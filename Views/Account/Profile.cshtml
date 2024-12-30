@@ -1,0 +1,87 @@
+﻿@model AuthApplication.Models.UserProfileViewModel
+
+@{
+    ViewData["Title"] = "User Profile";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="text-center">User Profile</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="/Account/Profile">
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" class="form-control" readonly />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="FirstName" class="form-label">First Name</label>
+                            <input asp-for="FirstName" class="form-control" placeholder="Enter your first name" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="LastName" class="form-label">Last Name</label>
+                            <input asp-for="LastName" class="form-control" placeholder="Enter your last name" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Address" class="form-label">Address</label>
+                            <input asp-for="Address" class="form-control" placeholder="Enter your address" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="BirthDate" class="form-label">Date of Birth</label>
+                            <input asp-for="BirthDate" type="date" class="form-control" />
+                            <span asp-validation-for="BirthDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-block">Update</button>
+                        </div>
+                    </form>
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger mt-3" role="alert">
+                            <p>Please correct the errors before proceeding:</p>
+                            <ul>
+                                @foreach (var error in ViewData.ModelState)
+                                {
+                                    if (error.Value.Errors.Count > 0)
+                                    {
+                                        <li>@error.Key: @string.Join(", ", error.Value.Errors.Select(e => e.ErrorMessage))</li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    }
+
+                    @if (ViewBag.Message != null)
+                    {
+                        <div class="alert alert-success mt-3" role="alert">
+                            @ViewBag.Message
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="text-center mt-3" style="cursor: pointer;">
+                <a href="/Account/Logout" class="btn btn-danger">Log Out</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+}

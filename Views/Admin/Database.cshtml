@@ -1,0 +1,40 @@
+﻿@model IEnumerable<AuthApplication.Models.User>
+
+@{
+    ViewData["Title"] = "Data Base";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">User Table</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="table-primary">
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Address</th>
+                    <th>Birth Date</th>
+                    <th>Is Active</th>
+                    <th>Last Login</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.Email</td>
+                        <td>@user.FirstName</td>
+                        <td>@user.LastName</td>
+                        <td>@user.Address</td>
+                        <td>@user.BirthDate.ToShortDateString()</td>
+                        <td>@user.IsActive</td>
+                        <td>@user.LastLogin?.ToString("g")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
