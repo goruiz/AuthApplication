@@ -1,3 +1,6 @@
+Asegurarse de usar SQL Server
+Para la creación de la base de datos puede usar las migraciones o si prefiere se ha proporcionado el archivo AuthApplicationDB.sql para la creación de la base de datos
+
 Configurar la Cadena de Conexión
 Asegurarse de configurar la cadena de conexión. Acceder al archivo de configuración appsettings.json ubicado en la raíz del proyecto. Aquí deberá definir la cadena de conexión a su base de datos SQL Server, reemplazando los valores de servidor, base de datos, usuario y contraseña según su entorno.
 
